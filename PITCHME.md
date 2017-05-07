@@ -107,16 +107,60 @@ VIM knows <span style="color: #e49436">command, insert, visual, ed</span> modes
 - S substitutes the whole line
 - ct" is change 'til the symbol "
 - ci" changes text inside "" (cit changes inside tags)
+- CTRL-N in insert mode is completion
 
 ---
 
 <span style="color: #e49436">STEP 3. Working with SSH</span>
 
-Connect to remote hosts and execute commands seamlessly
+Connect to remote hosts and execute commands
 
 - connecting to hosts
 - the .ssh directory
 - connecting to hosts with keys
+
+---
+
+### SSH - connecting to hosts
+
+```
+ssh \
+-l joe #login remotely as user joe \
+-p 22 #use port to connect (22 is default) \
+myserver #connect to remote host "myserver" \
+df #execute the command "df" on remote host and exit
+```
+
+```
+ssh joe@myserver df
+```
+
+---
+
+### SSH - the .ssh directory
+
+.ssh/config
+
+```
+Host myserver
+User joe
+Host *
+User root
+```
+
+.ssh/authorized_keys
+```
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDG0LdQMLa+BS/OczAVs6IP+lsF7KdJ8g99GF3zsPfE1TnLo6rnb0mYiCCwTyNmcP/RnlMztfqIGZMuWYQPWSVBZFEYegU1I2B3F+Oe9pAasEEo/uDCxcziK2U33VtgoXevnuiOOVyH+KrRkGrkqNhrEPmwyc6mqpmwK43/YxFarWzqP3n/Dn4IF7Jhpq7Or8hMxyT8RIgt9HTHLEbBu/kODH1ZE7kdPrLxCJIHiGp+YBfV/7w6Uxd7Hyy65o8o89laKuih31V8Tsayzj1SWL8Hxmva8/Jpe0IBhDyRR0tlR7dgNWpQmTrqmLdNdxWlWtE9EEPIy4kNY0v7hr8/cPTR user@local-machine
+```
+---
+
+### SSH - connecting to hosts with keys
+
+```
+ssh-keygen #generate RSA key for SSH v2 by default
+ssh-copy-id myserver #transfer public key to myserver
+ssh myserver #will connect you to myserver with a key
+```
 
 ---
 
