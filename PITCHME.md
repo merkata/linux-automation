@@ -34,6 +34,10 @@ Learn to be fast and productive on the CLI
 
 ### CLI - aliases
 
+```
+alias rm="rm -i" #make remove interactive
+```
+
 +++?gist=8773d7189b0a8d3a40dfd881186c9c4c
 
 ---
