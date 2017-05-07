@@ -36,9 +36,32 @@ Learn to be fast and productive on the CLI
 
 ```
 alias rm="rm -i" #make remove interactive
+alias l="ls -latr" #long list of files
+alias space="du * | sort -rn -k1 | head -3" #top 3 largest files
 ```
 
-+++?gist=8773d7189b0a8d3a40dfd881186c9c4c
+---
+
+### CLI - for loops
+
+```
+for logfile in `ls *.log` #take each log file
+do
+gzip -9 $logfile #zip it
+scp -p $logfile loguser@logserver:/logdir/ && rm -f $logfile #copy remotely and delete locally
+done
+```
+
+---
+
+### CLI - moving fast
+
+- CTRL-A/CTRL-E move to beginning/end of the line
+- CTRL-R to search in command history
+- CTRL-P/CTRL-N to cycle back/forth in command history
+- CTRL-K to delete the whole line
+- ALT-B/ALT-F to move back/forth by word
+- ALT-W/ALT-D to delete back/forth by word
 
 ---
 
