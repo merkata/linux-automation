@@ -32,6 +32,12 @@ Learn to be fast and productive on the CLI
 
 ---
 
+### CLI - aliases
+
+---?gist=8773d7189b0a8d3a40dfd881186c9c4c
+
+---
+
 <span style="color: #e49436">STEP 2. Working with VIM</span>
 
 Be fast and feel confident inside VIM
