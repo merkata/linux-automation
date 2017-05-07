@@ -48,7 +48,8 @@ alias space="du * | sort -rn -k1 | head -3" #top 3 largest files
 for logfile in `ls *.log` #take each log file
 do
 gzip -9 $logfile #zip it
-scp -p $logfile loguser@logserver:/logdir/ && rm -f $logfile #copy remotely and delete locally
+scp -p $logfile loguser@logserver:/logdir/ && \
+rm -f $logfile #copy remotely and delete locally
 done
 ```
 
@@ -72,6 +73,40 @@ Be fast and feel confident inside VIM
 - VIM modes
 - moving around
 - editing
+
+---
+
+### VIM - modes
+
+VIM knows <span style="color: #e49436">command, insert, visual, ed</span> modes
+
+- ESC puts you in (default) command mode
+- i (and various others) put you in insert mode
+- v (V, gv, gV) puts you in visual mode
+- : puts you in ed mode
+
+### ESC:q! quits VIM (most frequent VIM advise to newcommers)
+
+---
+
+### VIM - moving around
+
+- h/j/k/l for basic movement
+- w/W to move by word
+- {/} to move by paragraph
+- * to move by current word under cursor
+- / "slash" and n/N to search and move through found items
+- CTRL-o/CTRL-i to move back/forth in jumps
+
+---
+
+### VIM - editing
+
+- o/O opens a new line below/above current line
+- a/A appends after cursor/at the end of the line
+- S substitutes the whole line
+- ct" is change 'til the symbol "
+- ci" changes text inside "" (cit changes inside tags)
 
 ---
 
