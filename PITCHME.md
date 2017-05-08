@@ -48,8 +48,8 @@ alias space="du * | sort -rn -k1 | head -3" #top 3 largest files
 for logfile in `ls *.log` #take each log file
 do
 gzip -9 $logfile #zip it
-scp -p $logfile loguser@logserver:/logdir/ && \
-rm -f $logfile #copy remotely and delete locally
+scp -p ${logfile}.gz loguser@logserver:/logdir/ && \
+rm -f ${logfile}.gz #copy remotely and delete locally
 done
 ```
 
@@ -85,7 +85,7 @@ VIM knows <span style="color: #e49436">command, insert, visual, ed</span> modes
 - v (V, gv, gV) puts you in visual mode
 - : puts you in ed mode
 
-### ESC:q! quits VIM (most frequent VIM advise to newcommers)
+ESC:q! quits VIM (most frequent VIM advise to newcommers)
 
 ---
 
@@ -171,6 +171,39 @@ Track your code changes and push code to a remote repo
 - creating a script locally
 - testing the script remotely
 - pushing to github
+
+---
+
+### Scripting - local script
+
+```
+#!/usr/bin/env bash
+#script to automatically collect log files
+#from a directory and gzip them
+
+for logfile in `ls *.log`
+do
+gzip -9 $logfile
+done
+```
+---
+
+### Scripting - remote script
+
+```
+#!/usr/bin/env bash
+#script to automatically collect log files
+#from a directory and gzip them to remote server
+#and deletes them afterwards
+
+for logfile in `ls *.log`
+do
+gzip -9 $logfile && rm -f $logfile
+done
+```
+---
+
+### Scripting - pushing to GitHub
 
 ---
 
