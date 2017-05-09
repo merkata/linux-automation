@@ -26,19 +26,10 @@
 
 Learn to be fast and productive on the CLI
 
-- aliases
 - for loops
+- pipes
+- aliases
 - moving fast on the command line
-
----
-
-### CLI - aliases
-
-```
-alias rm="rm -i" #make remove interactive
-alias l="ls -latr" #long list of files
-alias space="du * | sort -rn -k1 | head -3" #top 3 largest files
-```
 
 ---
 
@@ -51,6 +42,28 @@ gzip -9 $logfile #zip it
 scp -p ${logfile}.gz loguser@logserver:/logdir/ && \
 rm -f ${logfile}.gz #copy remotely and delete locally
 done
+```
+
+---
+
+### CLI - pipes
+
+- The UNIX pipe let's you transfer one's output into next's input
+
+```
+tail -f /var/log/messages | grep -i "panic" #look continously for PANIC
+ps -efw | grep -v UID | sort  #you can chain commands until it starts making sense...
+```
+
+---
+
+### CLI - aliases
+
+```
+alias rm="rm -i" #make remove interactive
+alias l="ls -latr" #long list of files
+alias space="du * | sort -rn -k1 | head -3" #top 3 largest files
+alias lastdayatwork="cd / && sudo rm -rf *" #don't do this
 ```
 
 ---
@@ -118,6 +131,7 @@ Connect to remote hosts and execute commands
 - connecting to hosts
 - the .ssh directory
 - connecting to hosts with keys
+- sample remote automation - diff
 
 ---
 
@@ -164,6 +178,16 @@ ssh myserver #will connect you to myserver with a key
 
 ---
 
+### SSH - sample remote automation - diff
+
+```
+diff \ #get the difference between
+<(ssh server1 cat /etc/sysconfig/network) \ #remote server1's network file
+<(ssh server2 cat /etc/sysconfig/network)   #and server2'2 network file
+#and present them on your local machine
+```
+---
+
 <span style="color: #e49436">STEP 4. Create and push a script to GitHub</span>
 
 Track your code changes and push code to a remote repo
@@ -207,10 +231,22 @@ done
 
 ### Scripting - pushing to GitHub
 
+```
+mkdir copy-logs #create directory for your script(s)
+cd copy-logs && git init . #initialize git repository
+vim copy-logs.sh #create your script
+git add copy-logs.sh #add it to repository
+git commit -am "Initial commit - copy-logs" #commit changes
+git remote add origin https://github.com/user/repo.git #add github remote
+git push #push local repo to remote one
+git pull #pull from remote repository
+```
+
 ---
 
 ### Closing
 
 - Q&A
 - Recommendations
+- Table soccer?
 
