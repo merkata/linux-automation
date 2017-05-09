@@ -198,7 +198,9 @@ done
 
 for logfile in `ls *.log`
 do
-gzip -9 $logfile && rm -f $logfile
+gzip -9 $logfile \
+&& scp -p ${logfile}.gz loguser@logserver:/logdir/ \
+&& rm -f ${logfile}.gz
 done
 ```
 ---
