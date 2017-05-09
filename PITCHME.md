@@ -46,6 +46,15 @@ done
 
 ---
 
+### CLI - for loops - dissection
+
+- backticks  `` execute the command inside
+- {} around a $variable "preserve" it (and permit some manipulations)
+- for variable in `generate a list` places every item of list inside the variable
+- inside the do...done you can execute everything upon $variable
+
+---
+
 ### CLI - pipes
 
 - The UNIX pipe let's you transfer one's output into next's input
@@ -184,7 +193,7 @@ ssh myserver #will connect you to myserver with a key
 diff \ #get the difference between
 <(ssh server1 cat /etc/sysconfig/network) \ #remote server1's network file
 <(ssh server2 cat /etc/sysconfig/network)   #and server2'2 network file
-#and present them on your local machine
+\#and present them on your local machine
 ```
 ---
 
@@ -192,41 +201,10 @@ diff \ #get the difference between
 
 Track your code changes and push code to a remote repo
 
+- pushing to github
 - creating a script locally
 - testing the script remotely
-- pushing to github
 
----
-
-### Scripting - local script
-
-```
-#!/usr/bin/env bash
-#script to automatically collect log files
-#from a directory and gzip them
-
-for logfile in `ls *.log`
-do
-gzip -9 $logfile
-done
-```
----
-
-### Scripting - remote script
-
-```
-#!/usr/bin/env bash
-#script to automatically collect log files
-#from a directory and gzip them to remote server
-#and deletes them afterwards
-
-for logfile in `ls *.log`
-do
-gzip -9 $logfile \
-&& scp -p ${logfile}.gz loguser@logserver:/logdir/ \
-&& rm -f ${logfile}.gz
-done
-```
 ---
 
 ### Scripting - pushing to GitHub
@@ -241,6 +219,64 @@ git remote add origin https://github.com/user/repo.git #add github remote
 git push #push local repo to remote one
 git pull #pull from remote repository
 ```
+
+---
+
+### Scripting - local script
+
+```
+#!/usr/bin/env bash
+#script to automatically collect log files
+#from a directory and gzip them
+
+echo "Compressing al files in $PWD"
+
+for logfile in `ls *.log`
+do
+gzip -9 $logfile
+done
+
+echo "All done"
+```
+---
+
+### Scripting - remote script
+
+```
+#!/usr/bin/env bash
+#script to automatically collect log files
+#from a directory and gzip them to remote server
+#and deletes them afterwards
+
+DEBUG=true
+
+function debug {
+if $DEBUG
+then
+echo "`date +%Y%m%d-%H:%M` $1 $2"
+fi
+}
+
+debug "INFO" "will ship logs to server logserver as user loguser"
+
+for logfile in `ls *.log`
+do
+debug "INFO" "compressing file $logfile"
+gzip -9 $logfile \
+&& scp -p ${logfile}.gz loguser@logserver:/logdir/ \
+&& rm -f ${logfile}.gz
+done
+
+debug "INFO" "script done"
+```
+---
+
+### Moving on
+
+- http://tldp.org/LDP/Bash-Beginners-Guide/html/
+- http://vimcasts.org/
+- http://tldp.org/LDP/abs/html/
+- https://git-scm.com/book/en/v2
 
 ---
 
