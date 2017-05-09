@@ -50,7 +50,7 @@ done
 
 - backticks  `` execute the command inside
 - {} around a $variable "preserve" it (and permit some manipulations)
-- for variable in `generate a list` places every item of list inside the variable
+- for variable in "generate a list" places every item of list inside the variable
 - inside the do...done you can execute everything upon $variable
 
 ---
@@ -116,7 +116,7 @@ ESC:q! quits VIM (most frequent VIM advise to newcommers)
 - h/j/k/l for basic movement
 - w/W to move by word
 - {/} to move by paragraph
-- * to move by current word under cursor
+- \* to move by current word under cursor
 - / "slash" and n/N to search and move through found items
 - CTRL-o/CTRL-i to move back/forth in jumps
 
