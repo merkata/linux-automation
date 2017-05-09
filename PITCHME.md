@@ -35,7 +35,7 @@ Learn to be fast and productive on the CLI
 
 ### CLI - for loops
 
-```
+```shell
 for logfile in `ls *.log` #take each log file
 do
 gzip -9 $logfile #zip it
