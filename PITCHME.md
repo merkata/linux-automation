@@ -35,7 +35,7 @@ Learn to be fast and productive on the CLI
 
 ### CLI - for loops
 
-```shell
+```
 for logfile in `ls *.log` #take each log file
 do
 gzip -9 $logfile #zip it
@@ -80,7 +80,8 @@ alias lastdayatwork="cd / && sudo rm -rf *" #don't do this
 ### CLI - moving fast
 
 - CTRL-A/CTRL-E move to beginning/end of the line
-- CTRL-R to search in command history
+- CTRL-R to search back in command history
+- CTRL-S to search forward in command history
 - CTRL-P/CTRL-N to cycle back/forth in command history
 - CTRL-K to delete the whole line
 - ALT-B/ALT-F to move back/forth by word
